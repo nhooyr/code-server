@@ -192,7 +192,13 @@ main() {
     return
   fi
 
-  VERSION="${VERSION-$(echo_latest_version)}"
+  if [ "${VERSION-}" ]; then
+    echo "Installing version v$VERSION"
+  else
+    VERSION="$(echo_latest_version)"
+    echo "Installing latest version v$VERSION"
+  fi
+
   METHOD="${METHOD-detect}"
   if [ "$METHOD" != detect ] && [ "$METHOD" != standalone ]; then
     echoerr "Unknown install method \"$METHOD\""
@@ -506,11 +512,11 @@ should_update() {
 
   installed_version="$(code-server --version | cut -d " " -f1)"
   if [ "$installed_version" != "$VERSION" ]; then
-    echo "updating as installed version v$installed_version does not match version v$VERSION"
+    echo "Updating as installed version v$installed_version does not match version v$VERSION"
     return 0
   fi
 
-  echo "already on version v$VERSION"
+  echo "Already on version v$VERSION"
   return 1
 }
 
