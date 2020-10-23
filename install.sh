@@ -92,6 +92,7 @@ Please extend your path to use code-server:
   PATH="$STANDALONE_INSTALL_PREFIX/bin:\$PATH"
 Then you can run:
   code-server
+Or pass --start to the install script to have it start code-server for you.
 EOF
 }
 
@@ -102,6 +103,7 @@ To have systemd start code-server now and restart on boot:
   sudo systemctl enable --now code-server@\$USER
 Or, if you don't want/need a background service you can run:
   code-server
+Or pass --start to the install script to have it start code-server for you.
 EOF
 }
 
@@ -118,7 +120,8 @@ main() {
     OPTIONAL \
     ALL_FLAGS \
     RSH_ARGS \
-    RSH
+    RSH \
+    START
 
   ALL_FLAGS=""
   while [ "$#" -gt 0 ]; do
@@ -159,6 +162,9 @@ main() {
       ;;
     --rsh=*)
       RSH="$(parse_arg "$@")"
+      ;;
+    --start)
+      START=1
       ;;
     -h | --h | -help | --help)
       usage
