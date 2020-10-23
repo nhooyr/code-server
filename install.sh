@@ -193,8 +193,24 @@ main() {
 
   if [ "${RSH_ARGS-}" ]; then
     RSH="${RSH-ssh}"
-    echoh "Installing remotely with $RSH $RSH_ARGS"
-    curl -fsSL https://code-server.dev/install.sh | prefix "$RSH_ARGS" "$RSH" "$RSH_ARGS" sh -s -- "$ALL_FLAGS"
+    echoh "Installing remotely with '$RSH $RSH_ARGS'"
+
+    cat_script="curl -fsSL https://code-server.dev/install.sh"
+    if [ -f "$0" ]; then
+      cat_script="cat $0"
+    fi
+
+    if [ "${START-}" ] && [ "$RSH" = ssh ]; then
+      port=8080
+      echo "Forwarding local port X to remote port $port"
+      (
+        while sleep 1; do
+          $RSH -NL "$PORT:localhost:$PORT" "$RSH_ARGS"
+        done
+      ) &
+    fi
+
+    $cat_script | prefix "$RSH_ARGS" $RSH "$RSH_ARGS" REMOTE=1 sh -s -- "$ALL_FLAGS"
     return
   fi
 
