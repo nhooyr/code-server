@@ -46,9 +46,9 @@ Usage:
       To install system wide pass ---prefix=/usr/local
 
   --start
-      Starts code-server after installation. If installing remotely and
-      the remote shell is ssh, then the remote port code-server is running
-      on is also forwarded locally for easy access.
+      Starts code-server after installation. It will then tail code-server's logs
+      for you. If installing remotely and the remote shell is ssh, then the
+      remote port code-server is running on is also forwarded locally for easy access.
 
   --rsh <bin>
       Specifies the remote shell for remote installation. Defaults to ssh.
@@ -347,7 +347,7 @@ install_macos() {
     echoh
 
     sh_c brew install code-server
-
+    echoh "Or pass --start to the install script to have it start code-server for you."
     return
   fi
 
