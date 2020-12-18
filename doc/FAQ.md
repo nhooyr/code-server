@@ -27,6 +27,7 @@
 - [Isn't an install script piped into sh insecure?](#isnt-an-install-script-piped-into-sh-insecure)
 - [How do I make my keyboard shortcuts work?](#how-do-i-make-my-keyboard-shortcuts-work)
 - [Differences compared to Theia?](#differences-compared-to-theia)
+- [HTTP_PROXY](#http_proxy)
 - [Enterprise](#enterprise)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -337,6 +338,20 @@ You can't just use your VS Code config in Theia like you can with code-server.
 
 To summarize, code-server is a patched fork of VS Code to run in the browser whereas
 Theia takes some parts of VS Code but is an entirely different editor.
+
+## HTTP_PROXY
+
+code-server supports the `$HTTP_PROXY` environment variables to allow directing all
+HTTP/HTTPS requests through a proxy.
+
+You should be able to use as follows:
+
+```sh
+export HTTP_PROXY=http://134.8.5.4:8080
+code-server
+```
+
+Or you can use the lowercase version `$http_proxy`.
 
 ## Enterprise
 
