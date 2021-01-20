@@ -48,6 +48,7 @@
     "@types/tar-fs": "^2.0.0",
     "@types/tar-stream": "^2.1.0",
     "@types/ws": "^7.2.6",
+    "@types/wtfnode": "^0.7.0",
     "@typescript-eslint/eslint-plugin": "^4.7.0",
     "@typescript-eslint/parser": "^4.7.0",
     "doctoc": "^1.4.0",
@@ -55,7 +56,6 @@
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.1.0",
-    "leaked-handles": "^5.2.0",
     "mocha": "^8.1.2",
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.0.5",
@@ -63,7 +63,8 @@
     "stylelint-config-recommended": "^3.0.0",
     "supertest": "^6.0.1",
     "ts-node": "^9.0.0",
-    "typescript": "4.0.2"
+    "typescript": "4.0.2",
+    "wtfnode": "^0.8.4"
   },
   "resolutions": {
     "@types/node": "^12.12.7",
